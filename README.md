@@ -23,13 +23,28 @@
 
 具体阻塞和验收要求见 [平台状态](docs/PLATFORMS.md)。Tauri 支持多平台，不代表本项目已完成所有平台适配。
 
+### Windows / Linux 用户
+
+目前可以按下方 [本地运行](#本地运行) 的步骤使用浏览器预览，体验 EPUB 阅读和浏览器本地笔记；桌面助手、Vault 和 MCP 不包含在预览中。
+
+桌面版还需适配：Windows 的本地通信桥接尚未实现，Linux 的数据目录和通信路径仍需调整，两个平台的安装包目标也未配置。完整桌面编译教程和下载包将在适配并完成实际阅读流程验收后提供。参与移植可先查看 [构建说明](docs/BUILDING.md#windows--linux)。
+
 ## 下载预览版
 
 Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
 
 ## 本地运行
 
-浏览器预览需要 Node.js 22.12 或更新版本：
+### 浏览器预览（macOS / Windows / Linux）
+
+需要 Git 和 Node.js 22.12 或更新版本。首次获取源码：
+
+```sh
+git clone https://github.com/leoyang1984/ai-native-reader.git
+cd ai-native-reader
+```
+
+在源码目录运行：
 
 ```sh
 npm ci
@@ -37,6 +52,8 @@ npm run dev
 ```
 
 打开终端显示的本地地址。预览与桌面应用的数据独立。
+
+### macOS 桌面
 
 macOS 桌面还需要 Rust 和 Xcode 开发工具：
 

@@ -5,6 +5,13 @@
 安装 Git 和 Node.js 22.12+（包含 npm），获取源码并进入仓库目录：
 
 ```sh
+git clone https://github.com/leoyang1984/ai-native-reader.git
+cd ai-native-reader
+```
+
+在源码目录运行：
+
+```sh
 npm ci
 npm run dev
 ```
@@ -46,20 +53,28 @@ npm run desktop:build -- --debug
 
 开发包输出在 `src-tauri/target/debug/bundle/macos/`。调试模式可通过 `AINATIVE_READER_DATA_DIR` 指定独立测试目录；请使用新建空目录，不要填写真实 Vault 或原有应用数据目录。发布模式不使用这一测试覆盖配置。原创样书在 `public/samples/reader-lab.epub`。
 
-以上应用包未签名、公证。对外分发签名版本需另行配置 Apple 开发者证书及公证流程，仓库不保存证书或口令。
+上述本地构建命令未配置 Apple Developer ID 签名或公证。当前发布工作流会生成完整的 ad-hoc 应用签名；这种签名没有 Apple 开发者身份认证，也不能替代公证。对外分发经过 Apple 认证的版本需另行配置开发者证书及公证流程，仓库不保存证书或口令。
 
 ## Windows / Linux
 
-当前只提供浏览器预览的完整操作方法。桌面版仍有明确运行阻塞，见 [平台状态](PLATFORMS.md)，请不要把编译成功当作可用完整版。
+### 使用浏览器预览
+
+Windows/Linux 用户可按本文开头的 [浏览器预览](#浏览器预览各桌面系统) 步骤运行和构建阅读预览。此方式包含 EPUB 阅读与浏览器本地笔记，不提供桌面助手、Vault 或 MCP。
+
+### 参与桌面移植（尚未完成验收）
+
+当前桌面版存在运行阻塞：Windows 本地通信桥接未实现，Linux 的数据与通信路径需要调整。详情见 [平台状态](PLATFORMS.md)。Windows/Linux 的完整桌面编译教程、安装包与已验证环境将在适配及实际阅读流程验收后提供。
 
 若参与移植，先安装 [Tauri 官方平台依赖](https://v2.tauri.app/start/prerequisites/)：Windows 需要 MSVC 构建工具与 WebView2，Linux 需要相应发行版的 WebKitGTK 等开发包。之后可用 `npm ci`、`npm run build` 和 `cargo check --locked --manifest-path src-tauri/Cargo.toml` 检查源码。当前 `desktop:build` 的 `app` 目标属于 macOS；Windows/Linux 的安装包目标还未配置。
 
 ## 自动流程
 
 - `CI`：检查前端类型与构建，并在 macOS 编译 Rust。不会使用模型账户或真实书籍。
-- `Build macOS (unsigned)`：仓库所有者手动运行，生成未签名 `.app` 压缩包作为 Actions 构建产物，不自动发布 Release。
+- `Build macOS (unsigned)`：仓库所有者手动运行，构建 Apple Silicon `.app`、生成并验证完整 ad-hoc 签名，再压缩为 ZIP 构建产物。工作流名称沿用原名；应用没有 Apple Developer ID 签名或公证。不会自动发布 Release。
 
-工作流尚需在远端实际运行后确认。下载构建产物后仍需完成系统、阅读、助手、Vault、MCP 的实际验收。
+2026-10-04，v0.1.0 对应提交 `14866ab749216a1e17cfb146622781b765cd207a` 的 [CI](https://github.com/leoyang1984/ai-native-reader/actions/runs/37197117278) 与 [macOS 应用构建](https://github.com/leoyang1984/ai-native-reader/actions/runs/37197149969) 均已成功运行。CI 包括 Ubuntu 上的前端构建和 macOS 上的 Rust 编译检查，没有执行 Windows/Linux 桌面验收。
+
+[v0.1.0 预览版](https://github.com/leoyang1984/ai-native-reader/releases/tag/v0.1.0) 已发布。下载包通过版本、arm64 架构、许可资源、系统动态库、应用签名完整性、原生 MCP 初始化及公开下载校验；此次未重新执行完整图形界面与真实模型问答验收。完整阅读主线依据相同功能源码此前的 M5-08 验收。每个新平台仍需完成系统、阅读、助手、Vault、MCP 的实际验收。
 
 ## 开发者检查命令
 

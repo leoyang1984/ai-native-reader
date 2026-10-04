@@ -21,20 +21,39 @@ Windows and Linux desktop support requires additional development: process disco
 
 The browser preview supports EPUB reading and browser-local notes. It has no desktop assistant, Vault access or local MCP. Its data is separate from the desktop database.
 
+### Windows / Linux users
+
+You can use the browser preview by following the [Run](#run) steps below. The Windows local communication bridge is not implemented; Linux data and communication paths need adaptation. Installer targets are not configured for either platform.
+
+Complete desktop build instructions and downloads will be provided after platform adaptation and actual reading workflow acceptance. Contributors can start with the [porting prerequisites](docs/BUILDING.md#windows--linux).
+
 ## Download the preview
 
 Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
 
 ## Run
 
-Browser preview requires Node.js 22.12 or later:
+### Browser preview (macOS / Windows / Linux)
+
+Install Git and Node.js 22.12 or later. To obtain the source:
+
+```sh
+git clone https://github.com/leoyang1984/ai-native-reader.git
+cd ai-native-reader
+```
+
+Run from the source directory:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. For the Mac desktop application, also install Rust stable and Xcode Command Line Tools:
+Open the local address printed in the terminal, normally `http://127.0.0.1:4173`.
+
+### macOS desktop
+
+Also install Rust stable and Xcode Command Line Tools:
 
 ```sh
 npm run desktop
