@@ -10,12 +10,49 @@
     "frontendDist": "../dist"
   },
   "app": {
-    "windows": [{ "label": "main", "title": "AI Native Reader", "width": 1200, "height": 900, "minWidth": 800, "minHeight": 600, "dragDropEnabled": true }],
+    "windows": [
+      {
+        "label": "main",
+        "title": "AI Native Reader",
+        "width": 1200,
+        "height": 900,
+        "minWidth": 800,
+        "minHeight": 600,
+        "dragDropEnabled": true
+      }
+    ],
     "security": {
       "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' blob:; img-src 'self' blob: data:; font-src 'self' blob: data:; frame-src 'self' blob:; connect-src 'self' ipc: http://ipc.localhost; object-src 'none'",
-      "capabilities": ["main"]
+      "capabilities": [
+        "main"
+      ]
     }
   },
-  "bundle": { "active": true, "targets": ["app"], "icon": ["icons/icon.png"] },
-  "plugins": { "deep-link": { "desktop": { "schemes": ["ainativereader"] } } }
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app"
+    ],
+    "icon": [
+      "icons/icon.png"
+    ],
+    "resources": [
+      "../LICENSE",
+      "../COPYRIGHT",
+      "../LICENSES/",
+      "../release-notices/"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    }
+  },
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": [
+          "ainativereader"
+        ]
+      }
+    }
+  }
 }

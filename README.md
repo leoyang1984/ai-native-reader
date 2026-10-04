@@ -23,6 +23,10 @@
 
 具体阻塞和验收要求见 [平台状态](docs/PLATFORMS.md)。Tauri 支持多平台，不代表本项目已完成所有平台适配。
 
+## 下载预览版
+
+Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
+
 ## 本地运行
 
 浏览器预览需要 Node.js 22.12 或更新版本：

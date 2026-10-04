@@ -21,6 +21,10 @@ Windows and Linux desktop support requires additional development: process disco
 
 The browser preview supports EPUB reading and browser-local notes. It has no desktop assistant, Vault access or local MCP. Its data is separate from the desktop database.
 
+## Download the preview
+
+Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
+
 ## Run
 
 Browser preview requires Node.js 22.12 or later:
