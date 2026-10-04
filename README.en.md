@@ -4,6 +4,10 @@
 
 A quiet, local EPUB reader with a persistent reading companion. Read, ask about selected passages, continue a discussion, keep your own words, confirm edited AI drafts, export Markdown, and follow citations back to the book.
 
+![Read a passage, discuss it with the right-hand assistant, and follow source citations](docs/screenshots/reading-assistant.jpg)
+
+*A real Mac app screenshot using the project's original bilingual sample book and an existing acceptance conversation. The screenshots show the Chinese interface; controls are explained below.*
+
 ## Features
 
 - EPUB library, table of contents, reading position, highlights and notes.
@@ -12,6 +16,29 @@ A quiet, local EPUB reader with a persistent reading companion. Read, ask about 
 - Retrieval from Reader notes, confirmed ideas and a connected Obsidian Vault.
 - Explicit confirmation before saving AI drafts; Markdown exports with conflict protection.
 - Optional local MCP interface for external clients.
+
+## Quick start
+
+1. **Open a book:** import or drag an EPUB onto the library, or choose “先用示例试读” (Try the sample). Switch between single and double columns in the top bar. Use ← / → for chapters and ↑ / ↓ to move within the current chapter.
+2. **Discuss a passage:** connect Codex or pi using the [setup guide](docs/GETTING_STARTED.md). Select text and choose “提问” (Ask), or open the right-hand “助手” (Assistant) and type a question. Send with ⌘ / Ctrl + Enter. Expand “原文依据／参考依据” (Sources) and choose “查看原文” (View passage) to jump back to the book.
+3. **Keep your thoughts:** choose “存为笔记” (Save as note) on your own message. For an AI response, choose “确认想法” (Review idea), edit the title and text, then “确认并保存想法” (Confirm and save). Connect an Obsidian Vault if you want Markdown exports.
+
+<details>
+<summary>More screenshots: double columns and confirming an idea</summary>
+
+### Double column reading
+
+![Double column reading with the assistant collapsed and chapter page controls below](docs/screenshots/double-column.jpg)
+
+Use “单栏／双栏” (Single / Double) in the top bar. Read the left column, then the right. The page controls or ↑ / ↓ move through the current chapter. The reader temporarily uses one column when space is limited. Collapse the assistant or drag its boundary to adjust its width.
+
+### Review before saving
+
+![Edit an AI draft in the assistant before confirming and saving it](docs/screenshots/confirm-idea.jpg)
+
+The result remains an editable draft until you confirm it. This screenshot shows a draft and a test Vault export option from the earlier acceptance run. Ordinary reading does not require a Vault connection.
+
+</details>
 
 ## Platform status
 
