@@ -1,4 +1,4 @@
-AI Native Reader 0.1.0 — Third-party notices
+AI Native Reader 0.1.1 — Third-party notices
 
 This file preserves upstream license texts and attribution. It includes all locked Rust packages (some are build tools or apply to other platforms), plus installed npm runtime dependencies. The accompanying source archive preserves upstream source headers. No third-party rights are replaced by the Reader GPL license.
 

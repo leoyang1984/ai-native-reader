@@ -1,5 +1,7 @@
 # AI Native Reader
 
+<img src="src-tauri/icons/reader-v2.png" width="96" height="96" alt="伴读 · AI Native Reader app icon">
+
 [中文](README.md)
 
 A quiet, local EPUB reader with a persistent reading companion. Read, ask about selected passages, continue a discussion, keep your own words, confirm edited AI drafts, export Markdown, and follow citations back to the book.
@@ -12,7 +14,7 @@ A quiet, local EPUB reader with a persistent reading companion. Read, ask about 
 
 - EPUB library, table of contents, reading position, highlights and notes.
 - Single or double column reading, keyboard navigation and a resizable assistant.
-- Local Codex or pi integration using your own configured account.
+- Local Codex or pi integration using your own configured account. After setup, Reader starts the selected CLI in the background when you connect; no separate Codex desktop app or terminal window needs to remain open.
 - Retrieval from Reader notes, confirmed ideas and a connected Obsidian Vault.
 - Explicit confirmation before saving AI drafts; Markdown exports with conflict protection.
 - Optional local MCP interface for external clients.
@@ -56,7 +58,7 @@ Complete desktop build instructions and downloads will be provided after platfor
 
 ## Download the preview
 
-Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
+The latest preview is **v0.1.1**, featuring the new app icon. Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
 
 ## Run
 

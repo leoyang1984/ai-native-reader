@@ -1,5 +1,7 @@
 # AI Native Reader · 伴读
 
+<img src="src-tauri/icons/reader-v2.png" width="96" height="96" alt="伴读 · AI Native Reader app icon">
+
 [English](README.en.md)
 
 一个安静的本地 EPUB 阅读器。右侧助手让你围绕原文持续讨论，把读书时的疑问与思考留在书旁。
@@ -58,7 +60,7 @@
 
 ## 下载预览版
 
-Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
+最新版本为 **v0.1.1 预览版**，更新了应用图标。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
 
 ## 本地运行
 
@@ -99,7 +101,7 @@ npm run desktop:build
 
 ## 助手与 Obsidian
 
-先安装并登录你自己的 Codex 或 pi，再在 Reader 的连接界面选择程序。历史验收使用 Codex CLI 0.160.0、pi 1.0.0；其他版本需验证协议兼容性。只在 Reader 内对话不需要配置 MCP。
+先安装并登录你自己的 Codex 或 pi，再在 Reader 的连接界面选择程序。历史验收使用 Codex CLI 0.160.0、pi 1.0.0；其他版本需验证协议兼容性。配置完成后，日常只需打开伴读；连接时会在后台启动所选 CLI，无需另外保持 Codex 桌面应用、pi 或终端窗口开启。只在 Reader 内对话不需要配置 MCP。
 
 选择 Obsidian Vault 后，助手使用该连接配置检索材料，无需在每次对话中重新提供目录。当前检索有数量、大小与时间限制，不是完整的大型 Vault 索引；未命中不能证明整个 Vault 不含相关材料。
 
