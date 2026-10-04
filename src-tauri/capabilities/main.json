@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main",
+  "description": "Reader main window, including choosing EPUB files and saving on close",
+  "windows": ["main"],
+  "permissions": ["core:default", "core:window:allow-close", "dialog:allow-open", "deep-link:allow-get-current"]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "ai-native-reader",
+  "version": "0.1.0",
+  "private": true,
+  "overrides": {
+    "@xmldom/xmldom": "0.9.12"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "desktop": "tauri dev",
+    "desktop:build": "tauri build --bundles app",
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "fixture": "node scripts/create-fixture.mjs",
+    "mcp:config": "node scripts/mcp-config.mjs",
+    "mcp:check": "node scripts/mcp-check.mjs",
+    "assistant:check": "cargo run --manifest-path src-tauri/Cargo.toml -- --assistant-check"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-deep-link": "^2.6.1",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "epubjs": "0.3.93",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0"
+  },
+  "license": "GPL-3.0-only"
+}

@@ -1,0 +1,96 @@
+[hidden]{display:none!important}
+button:disabled{opacity:.5;cursor:wait}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:1px solid #77866b;outline-offset:4px}
+.library-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.library-heading h1{margin-bottom:0}
+.local-caption{font-size:11px;line-height:1.7;color:#99968d;margin:0 0 28px}
+.empty-library{margin:80px 0 45px;color:#8d8a7f;font-family:var(--serif);font-size:19px;line-height:1.8}
+.empty-library .local-caption{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px}
+.sample-link{font-size:12px;color:#858a78;padding:14px 0;margin-top:20px}
+.reader-screen.active{display:flex;flex-direction:column;height:calc(100vh - 64px);padding:24px 24px 25px;overflow:hidden}
+.reader-screen .book-heading{flex:none;margin-bottom:25px}
+.reader-screen .book-heading h1{font-size:27px;max-width:800px;line-height:1.5}
+.reader-screen .eyebrow{margin-bottom:9px}
+#epub-view{flex:1;min-height:200px;width:min(100%,704px);margin:0 auto;overflow:hidden}
+.epub-container{scrollbar-width:thin;scrollbar-color:#d3d0c5 transparent}
+.reader-screen .reading-footer{flex:none;margin:15px auto 0;width:min(100%,680px)}
+.progress-meta .text-button{font-size:11px;color:#96938a;padding:0}
+.progress-track span{transition:width .15s}
+.link-return{position:fixed;right:25px;bottom:25px;color:#858a78;font-size:11px}
+.session-screen{display:none}
+.session-screen.active{display:grid}
+.operation-status{position:fixed;z-index:12;top:60px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;max-width:calc(100vw - 48px);padding:10px 16px;background:var(--paper);border:1px solid var(--line);border-radius:6px;font-size:12px;color:#85755e;line-height:1.5;box-shadow:0 3px 15px #00000008}
+.operation-status .text-button{font-size:11px;color:inherit;white-space:nowrap}
+.options-menu{width:240px;max-height:calc(100vh - 80px);overflow:auto;background:var(--paper)}
+.menu-label{font-size:10px;letter-spacing:.1em;color:#99968d;margin:12px}
+.setting-row{display:flex;align-items:center;gap:9px;padding:9px 12px;font-size:12px;color:#858277}
+.setting-row input{min-width:0;width:105px;accent-color:#77866b}
+.setting-row output{font-size:10px;color:#99968d}
+.setting-row select{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:4px;padding:3px 7px;font-size:11px}
+.toc-menu{position:absolute;left:50%;top:110px;transform:translateX(-50%);width:min(480px,calc(100% - 48px));max-height:calc(100vh - 170px);overflow:auto;background:var(--paper);padding:15px;border:1px solid var(--line);border-radius:7px;box-shadow:0 8px 30px #24241d16}
+.toc-item{display:block;width:100%;text-align:left;padding:11px 12px;color:#77766d;font-size:13px;line-height:1.5;border-radius:4px}
+.toc-item:hover{background:#00000005}
+.editor-error{font-size:11px;color:#96704a;line-height:1.6;margin:9px 0}
+.note-jump{display:block;text-align:left;width:100%;font-family:var(--serif);font-size:16px;line-height:1.8;white-space:pre-wrap;padding:7px 0}
+.note-entry blockquote{border-left:1px solid #d8d5c9;margin:8px 0;padding-left:12px;color:#929087;font-family:var(--serif);font-size:13px;line-height:1.8;max-height:98px;overflow:auto}
+.note-links{display:flex;gap:15px;align-items:center;font-size:10px;color:#aaa79e;margin:10px 0 0}
+.note-links .text-button{padding:0;font-size:10px;color:#828a75}
+.empty-notes{font-size:13px;color:#96938a;line-height:1.8;margin-top:25px}
+.book-cover{object-fit:cover}
+.dark-mode .toc-item,.dark-mode .setting-row,.dark-mode .options-menu button{color:#b1ad9f}
+.dark-mode .options-menu button:hover{background:#ffffff08}
+@media(max-width:700px){.reader-screen.active{height:calc(100vh - 55px);padding:18px 18px 20px}.reader-screen .book-heading{margin-bottom:20px}.reader-screen .book-heading h1{font-size:22px}.link-return{right:18px;bottom:70px}.simple-page{margin-top:45px}}
+.vault-link{font-size:12px;color:#858a78;margin-left:24px}
+.review-actions{display:flex;gap:22px;margin:22px 0 8px;flex-wrap:wrap}
+.review-actions .text-button{font-size:11px;color:#858a78}
+.vault-dialog{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(480px,calc(100% - 48px));max-height:calc(100vh - 80px);overflow:auto;padding:28px;background:var(--paper);border:1px solid var(--line);border-radius:7px;box-shadow:0 8px 30px #24241d16}
+.vault-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.vault-heading h2{font-family:var(--serif);font-size:21px;font-weight:400;margin:0}
+.vault-copy{font-size:12px;line-height:1.9;color:#939087;margin:10px 0}
+.vault-path{font-size:12px;line-height:1.8;overflow-wrap:anywhere;margin:22px 0 8px;color:#77796f}
+.vault-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:25px}
+.vault-actions .primary-button{font-size:12px;padding:10px 16px}
+.vault-actions .text-button{font-size:11px;color:#858a78}
+.vault-result{margin-top:20px;color:#858a78}
+.note-export{display:flex;gap:15px;align-items:center;flex-wrap:wrap;font-size:10px;color:#99968d;margin-top:12px}
+.note-export .text-button{font-size:10px;color:#858a78;padding:0}
+.note-entry .export-message{font-size:10px;line-height:1.7;color:#97816a;margin:9px 0 0}
+.ask-card{max-height:calc(100vh - 96px);overflow:auto;background:var(--paper)}
+.ask-heading{display:flex;justify-content:space-between;align-items:center;color:#8a887e;font-size:11px;margin-bottom:9px}
+.ask-heading button{font-size:18px;padding:0 4px}
+.ask-card .selected-quote{max-height:72px;overflow:auto;font-size:12px;line-height:1.7;margin:8px 0 12px}
+.ask-card .response-copy{white-space:pre-wrap;font-family:var(--serif);font-size:15px;line-height:1.85;margin:12px 0}
+.ask-caption{color:#96938a;font-size:10px;line-height:1.7;margin:8px 0}
+.ask-question-label{color:#858277;font-size:12px;line-height:1.7;white-space:pre-wrap;margin:10px 0}
+.ask-sources{display:flex;flex-direction:column;align-items:flex-start;gap:7px;margin-top:12px}
+.ask-sources button{color:#858a78;font-size:10px;padding:0;text-align:left;line-height:1.6}
+.ask-card .popover-footer{margin-top:12px}
+.reflection-panel{margin:34px 0;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.reflection-heading{display:flex;justify-content:space-between;align-items:center}
+.reflection-heading h2,.ideas-heading{font-family:var(--serif);font-size:21px;font-weight:400;margin:12px 0}
+.reflection-search,.reflection-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.reflection-panel input:not([type=checkbox]),.reflection-panel select,.reflection-panel textarea{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:8px 10px;font:inherit;font-size:12px}
+.reflection-search input{flex:1;min-width:130px}.reflection-search select{max-width:190px}
+.reflection-scope{font-size:11px;color:#929087;line-height:1.8}.reflection-scope label{display:block;margin-top:10px}
+.reflection-scope .text-button{font-size:11px;margin-right:18px}.reflection-scope p{overflow-wrap:anywhere}
+.reflection-source{margin:18px 0}.reflection-source label{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.7}
+.reflection-source small{display:block;font-size:10px;color:#96938a}
+.reflection-source blockquote{margin:9px 0 9px 25px;max-height:120px;overflow:auto;font-size:12px;line-height:1.8;white-space:pre-wrap;color:#96938a}
+.reflection-label,.idea-editor>label{display:block;font-size:12px;color:#929087;margin:14px 0 8px}
+.reflection-panel textarea{width:100%;min-height:76px;resize:vertical;line-height:1.8}
+.reflection-analysis,.idea-body{font-family:var(--serif);font-size:16px;line-height:1.9;white-space:pre-wrap}
+.reflection-citation{margin:15px 0}.reflection-citation button{font-size:11px;color:#858a78;text-align:left}
+.reflection-citation blockquote{font-size:12px;line-height:1.8;color:#96938a;margin:6px 0;border-left:1px solid var(--line);padding-left:12px;white-space:pre-wrap}
+.idea-editor{margin:24px 0;padding-top:12px;border-top:1px solid var(--line)}.idea-editor input:not([type=checkbox]){width:100%}.idea-editor textarea{min-height:140px}
+.idea-export-choice{font-size:11px!important;line-height:1.8}.idea-title{font-family:var(--serif);font-size:19px;font-weight:400;line-height:1.6}
+.discussion-copy{font-size:11px;color:#858a78;margin-top:14px}#discussion-material{margin-top:12px;min-height:160px}
+
+/* Wide reading uses a real paginated spread; the assistant keeps its own column. */
+#epub-view.double-layout{width:min(100%,1200px)}
+.reader-screen:has(#epub-view.double-layout) .reading-footer{width:min(100%,1200px)}
+.layout-toggle{font-size:12px;color:var(--muted);padding:10px 0;white-space:nowrap}
+.layout-toggle[aria-pressed="true"]{color:var(--accent)}
+.page-navigation{display:flex;align-items:center;justify-content:center;gap:24px;margin:0 0 13px;font-size:11px;color:#96938a}
+.page-navigation .text-button{font-size:11px;padding:0;color:inherit}
+.page-navigation button:disabled{cursor:default;opacity:.35}
+@media(max-width:700px){.topbar-actions{gap:13px}.topbar-book{max-width:30vw}}

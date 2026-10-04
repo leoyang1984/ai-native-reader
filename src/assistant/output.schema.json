@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "answer", "citations", "proposal"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "enum": [1] },
+    "answer": { "type": "string" },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sourceId", "quote"],
+        "properties": {
+          "sourceId": { "type": "string" },
+          "quote": { "type": "string" }
+        }
+      }
+    },
+    "proposal": { "type": "null" }
+  }
+}
