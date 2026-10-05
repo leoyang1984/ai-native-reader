@@ -283,7 +283,7 @@ impl Core {
                 }
             }
         });
-        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.1"},"capabilities":{"experimentalApi":false}}))?;
+        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.2"},"capabilities":{"experimentalApi":false}}))?;
         if !initialized["userAgent"].is_string() { return Err("Codex 初始化响应不兼容。".into()); }
         {
             let mut inner = self.inner.lock().map_err(|_| "Codex 状态不可用。")?;

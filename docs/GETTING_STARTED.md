@@ -2,9 +2,9 @@
 
 ## 下载安装
 
-本次发布：AI Native Reader 0.1.1 预览版，Apple Silicon（M1、M2、M3、M4 及之后的同架构芯片）。Intel Mac 不能运行此 arm64 安装包。Windows/Linux 完整版仍待适配。
+本次发布：AI Native Reader 0.1.2 预览版，Apple Silicon（M1、M2、M3、M4 及之后的同架构芯片）。Intel Mac 不能运行此 arm64 安装包。Windows/Linux 完整版仍待适配。
 
-1. 在 GitHub Releases 下载 `AI-Native-Reader-0.1.1-macOS-arm64.zip`。
+1. 在 GitHub Releases 下载 `AI-Native-Reader-0.1.2-macOS-arm64.zip`。
 2. 解压，将 `AI Native Reader.app` 拖入“应用程序”。
 3. 打开应用，使用内置 Reader Lab 原创样书，或导入自己的无 DRM、流式排版 EPUB（最大 100 MB）。
 
@@ -19,7 +19,7 @@ Reader 不内置模型程序、账号、订阅、API key 或模型额度。请�
 | 程序 | 当前 Reader 接受的版本 | 已完成完整真实问答验收 |
 | --- | --- | --- |
 | Codex CLI | 0.159.2、0.160.0 | 0.160.0，推荐 |
-| pi | 1.0.0 | 1.0.0 |
+| pi | 1.0.0、1.0.1、1.0.2、1.0.3 | 1.0.0；新增版本完成协议核对，实际问答尚未重新验收 |
 
 版本是明确的兼容范围，不代表更新版本也能连接。Reader 当前会拒绝其他版本。安装的是终端 CLI；仅安装 Codex 桌面应用不等于终端里已有 `codex` 程序。
 
@@ -35,19 +35,21 @@ codex login
 
 版本应显示 `codex-cli 0.160.0`。完成登录，并在终端确认 Codex 能正常响应。账户可用范围及模型费用遵循 OpenAI 当前规则，参阅 [官方认证说明](https://learn.chatgpt.com/docs/auth)。
 
-### 方案 B：pi 1.0.0
+### 方案 B：pi 1.0.3（也支持 1.0.0–1.0.2）
 
 需要 **Node.js 22.19.0 或更新版本**。本次验收使用的是 `@earendil-works/pi-coding-agent`，不要将其他同名包当作这个兼容版本。
 
 ```sh
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.0.0
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent@1.0.3
 pi --version
 pi
 ```
 
-版本应显示 `1.0.0`。进入 pi 后按其支持的方式登录（例如 `/login`）或配置模型服务，确认终端中可以正常问答。已有 pi 配置可以继续使用，Reader 不要求重新创建账号。模型服务可能收费，由用户的服务配置决定。
+上述安装命令的版本应显示 `1.0.3`。进入 pi 后按其支持的方式登录（例如 `/login`）或配置模型服务，确认终端中可以正常问答。已有 pi 配置可以继续使用，Reader 不要求重新创建账号。模型服务可能收费，由用户的服务配置决定。
 
-官方项目：[earendil-works/pi](https://github.com/earendil-works/pi)。Node.js 要求取自 [1.0.0 软件包发布元数据](https://registry.npmjs.org/@earendil-works%2fpi-coding-agent/1.0.0)。
+官方项目：[earendil-works/pi](https://github.com/earendil-works/pi)。Node.js 要求取自 [1.0.3 软件包发布元数据](https://registry.npmjs.org/@earendil-works%2fpi-coding-agent/1.0.3)。
+
+已有 pi 1.0.0–1.0.3 可直接继续使用。升级 Reader 后在「助手连接」中重新连接即可，无需重新登录。Azure 提供者在 pi 1.0.3 中改名，需要按上游说明更新 pi 配置并开启新对话；详见 [兼容说明](PI_COMPATIBILITY.md)。
 
 ### 在 Reader 中连接
 
@@ -69,7 +71,7 @@ pi
 
 ## 源码与许可证
 
-项目原创代码采用 GPLv3（仅第 3 版）。对应版本的项目源码、固定 Rust 依赖源码和 npm 运行依赖随 `AI-Native-Reader-0.1.1-source.tar.gz` 提供；源码不要求购买。第三方许可及通知在应用 `Contents/Resources` 和源码的 `release-notices/` 中提供。
+项目原创代码采用 GPLv3（仅第 3 版）。对应版本的项目源码、固定 Rust 依赖源码和 npm 运行依赖随 `AI-Native-Reader-0.1.2-source.tar.gz` 提供；源码不要求购买。第三方许可及通知在应用 `Contents/Resources` 和源码的 `release-notices/` 中提供。
 
 `SHA256SUMS.txt` 用于核对下载文件完整性。预览版允许合规商业使用与分发。
 

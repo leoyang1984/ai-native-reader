@@ -1,9 +1,15 @@
-//! Pi 1.0.0 JSONL transport. Reader-owned sessions, no tools/resources, no prompt on connect.
+//! Pi 1.0.0–1.0.3 JSONL transport. Reader-owned sessions, no tools/resources, no prompt on connect.
 use crate::{assistant::{self, AssistantService, Input}, codex::Status};
 use serde_json::{json, Value};
 use std::{collections::HashMap, fs, io::{BufRead, BufReader, Read, Write}, path::{Path, PathBuf}, process::{Child, Command, Stdio}, sync::{Arc, Mutex, mpsc}, thread, time::Duration};
 type Result<T> = std::result::Result<T, String>;
 type Sink = Arc<dyn Fn(&str, Value) + Send + Sync>;
+// The RPC commands/events are unchanged across these reviewed releases. Do not
+// accept future CLI versions until their transport and session changes are reviewed.
+const SUPPORTED_PI_VERSIONS: &[&str] = &["1.0.0", "1.0.1", "1.0.2", "1.0.3"];
+// This identifies Reader's RPC contract, not the installed CLI release. Keep it
+// stable so upgrading Pi does not change existing conversation bindings.
+const PI_RPC_PROTOCOL: &str = "pi-rpc/1.0.0";
 struct Active { detail: String, request: String, conversation: Option<String>, session: String, text: String, failed: bool, cancelled: bool, dispatched: bool, final_seen: bool }
 struct Inner { status: Status, child: Option<Child>, writer: Option<mpsc::SyncSender<Vec<u8>>>, pending: HashMap<String, mpsc::Sender<Result<Value>>>, seq: u64, active: Option<Active>, issued: Vec<String>, early_cancelled: Vec<String>, identity: String }
 struct Core { inner: Mutex<Inner>, operations: Mutex<()>, root: PathBuf, sessions: PathBuf, service: AssistantService, emit: Sink }
@@ -72,7 +78,7 @@ impl Core {
     fn connect_inner(self:&Arc<Self>,executable:String) -> Result<Status> {
         let path=fs::canonicalize(executable).map_err(|_|"找不到 pi 程序，请选择已安装的 pi 可执行程序。")?;
         let version=version(&path)?;
-        if version!="1.0.0" {return Err(format!("当前 pi 版本为 {version}；Reader 暂支持 pi 1.0.0。"));}
+        if !SUPPORTED_PI_VERSIONS.contains(&version.as_str()) {return Err(format!("当前 pi 版本为 {version}；Reader 支持 pi {}。请更新 Reader 或使用受支持的 pi 版本。",SUPPORTED_PI_VERSIONS.join("、")));}
         fs::create_dir_all(&self.sessions).map_err(|_|"无法建立 pi 对话目录。")?;
         let workspace=self.root.join("pi-workspace");fs::create_dir_all(&workspace).map_err(|_|"无法建立 pi 工作目录。")?;
         let mut command=command(&path);
@@ -127,7 +133,7 @@ impl Core {
             let session=format!("pi:{id}");
             let configured=format!("pi:{}/{}",state["model"]["provider"].as_str().unwrap_or(""),state["model"]["id"].as_str().unwrap_or(""));
             if configured!=identity {return Err("pi 的模型配置已变化，请重新连接并开启新对话。".into());}
-            if let Some(c)=&conversation {self.service.bind(c,&session,&identity,"pi-rpc/1.0.0")?;}
+            if let Some(c)=&conversation {self.service.bind(c,&session,&identity,PI_RPC_PROTOCOL)?;}
             {let mut i=self.inner.lock().map_err(|_|"pi 状态不可用。")?;if i.status.generation!=generation {return Err("pi 连接已变化。".into());} i.active.as_mut().ok_or("提问已取消")?.session=session.clone();i.status.thread_id=Some(session);}
             if let Some(schema)=schema {text.push_str("\n只输出一个 JSON 对象，不要 Markdown 围栏。必须符合这个 JSON Schema：\n");text.push_str(&schema.to_string());}
             let response=self.rpc(generation,json!({"type":"prompt","message":text}))?;

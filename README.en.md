@@ -44,7 +44,7 @@ The result remains an editable draft until you confirm it. This screenshot shows
 
 ## Platform status
 
-The main desktop workflow has been validated on an Apple Silicon Mac with Codex CLI 0.160.0 and pi 1.0.0. Other versions need validation.
+The main desktop workflow has been validated on an Apple Silicon Mac with Codex CLI 0.160.0 and pi 1.0.0. Reader accepts Codex CLI 0.159.2 / 0.160.0 and pi 1.0.0–1.0.3. The added pi versions have been reviewed for protocol compatibility; live chat has not been revalidated. See [pi compatibility](docs/PI_COMPATIBILITY.md).
 
 Windows and Linux desktop support requires additional development: process discovery, local bridge, data paths and packaging still need adaptation. See [platform status](docs/PLATFORMS.md). Compiling the source does not establish full desktop compatibility.
 
@@ -58,7 +58,7 @@ Complete desktop build instructions and downloads will be provided after platfor
 
 ## Download the preview
 
-The latest preview is **v0.1.1**, featuring the new app icon. Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
+The latest preview is **v0.1.2**, adding pi 1.0.1–1.0.3 compatibility while preserving the app icon and existing conversation bindings. Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
 
 ## Run
 
