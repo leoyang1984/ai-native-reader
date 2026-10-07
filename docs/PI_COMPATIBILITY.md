@@ -2,6 +2,8 @@
 
 日期 / Date: 2026-10-05
 
+后续更新 / Follow-up (2026-10-07): Reader v0.1.3 支持 Codex 0.160.1 / pi 1.0.4，参阅 [最新 CLI 兼容说明 / Current CLI compatibility](CLI_COMPATIBILITY.md)。下文保留 v0.1.2 当时的记录 / The record below describes v0.1.2.
+
 ## 用户说明
 
 - Reader 支持 pi **1.0.0、1.0.1、1.0.2、1.0.3**。

@@ -12,7 +12,7 @@ enum Target { Legacy, Conversation(String), Ephemeral }
 
 type Result<T> = std::result::Result<T, String>;
 // Keep explicit versions whose generated stable wire contracts were reviewed.
-const SUPPORTED_VERSIONS: [&str; 2] = ["codex-cli 0.159.2", "codex-cli 0.160.0"];
+const SUPPORTED_VERSIONS: [&str; 3] = ["codex-cli 0.159.2", "codex-cli 0.160.0", "codex-cli 0.160.1"];
 const RPC_TIMEOUT: Duration = Duration::from_secs(15);
 const TURN_TIMEOUT: Duration = Duration::from_secs(90);
 const PLANNING_TIMEOUT: Duration = Duration::from_secs(30);
@@ -283,7 +283,7 @@ impl Core {
                 }
             }
         });
-        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.2"},"capabilities":{"experimentalApi":false}}))?;
+        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.3"},"capabilities":{"experimentalApi":false}}))?;
         if !initialized["userAgent"].is_string() { return Err("Codex 初始化响应不兼容。".into()); }
         {
             let mut inner = self.inner.lock().map_err(|_| "Codex 状态不可用。")?;
