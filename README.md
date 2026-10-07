@@ -60,7 +60,7 @@
 
 ## 下载预览版
 
-最新版本为 **v0.1.3 预览版**，新增 Codex 0.160.1 和 pi 1.0.4 兼容支持，保留新图标和已有对话。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
+最新版本为 **v0.1.4 预览版**，修复 Codex 升级后旧程序路径失效的连接问题，继续支持 Codex 0.160.1 / pi 1.0.4。详见 [连接修复说明](docs/CODEX_LAUNCHER_FIX.md)。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
 
 ## 本地运行
 

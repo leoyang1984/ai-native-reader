@@ -2,9 +2,9 @@
 
 ## 下载安装
 
-本次发布：AI Native Reader 0.1.3 预览版，Apple Silicon（M1、M2、M3、M4 及之后的同架构芯片）。Intel Mac 不能运行此 arm64 安装包。Windows/Linux 完整版仍待适配。
+本次发布：AI Native Reader 0.1.4 预览版，Apple Silicon（M1、M2、M3、M4 及之后的同架构芯片）。Intel Mac 不能运行此 arm64 安装包。Windows/Linux 完整版仍待适配。
 
-1. 在 GitHub Releases 下载 `AI-Native-Reader-0.1.3-macOS-arm64.zip`。
+1. 在 GitHub Releases 下载 `AI-Native-Reader-0.1.4-macOS-arm64.zip`。
 2. 解压，将 `AI Native Reader.app` 拖入“应用程序”。
 3. 打开应用，使用内置 Reader Lab 原创样书，或导入自己的无 DRM、流式排版 EPUB（最大 100 MB）。
 
@@ -71,7 +71,7 @@ pi
 
 ## 源码与许可证
 
-项目原创代码采用 GPLv3（仅第 3 版）。对应版本的项目源码、固定 Rust 依赖源码和 npm 运行依赖随 `AI-Native-Reader-0.1.3-source.tar.gz` 提供；源码不要求购买。第三方许可及通知在应用 `Contents/Resources` 和源码的 `release-notices/` 中提供。
+项目原创代码采用 GPLv3（仅第 3 版）。对应版本的项目源码、固定 Rust 依赖源码和 npm 运行依赖随 `AI-Native-Reader-0.1.4-source.tar.gz` 提供；源码不要求购买。第三方许可及通知在应用 `Contents/Resources` 和源码的 `release-notices/` 中提供。
 
 `SHA256SUMS.txt` 用于核对下载文件完整性。预览版允许合规商业使用与分发。
 

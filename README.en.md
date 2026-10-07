@@ -58,7 +58,7 @@ Complete desktop build instructions and downloads will be provided after platfor
 
 ## Download the preview
 
-The latest preview is **v0.1.3**, adding Codex 0.160.1 and pi 1.0.4 compatibility while preserving the app icon and existing conversation bindings. Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
+The latest preview is **v0.1.4**, fixing reconnect after a Codex upgrade removes the old executable path. Codex 0.160.1 and pi 1.0.4 remain supported. See [launcher recovery](docs/CODEX_LAUNCHER_FIX.md). Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
 
 ## Run
 

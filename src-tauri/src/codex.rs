@@ -113,14 +113,18 @@ impl CodexHost {
     pub fn with_sink(root: &Path, assistant: AssistantService, emit: EventSink) -> Result<Self> {
         let settings_path = root.join("codex-connection.json");
         let mut settings_error = false;
-        let mut saved = match fs::read(&settings_path) {
+        let saved = match fs::read(&settings_path) {
             Ok(bytes) if bytes.len() <= 8192 => serde_json::from_slice::<Saved>(&bytes).unwrap_or_else(|_| { settings_error = true; Saved::default() }),
             Ok(_) => { settings_error = true; Saved::default() },
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => Saved::default(),
             Err(_) => { settings_error = true; Saved::default() },
         };
-        if saved.executable.is_empty() { saved.executable = discover_executable().unwrap_or_default(); }
-        let status = Status { phase: "disconnected".into(), executable: saved.executable.clone(), version: None, account: None,
+        // Upgrades can remove a previously saved version directory. Keep the
+        // saved session state until connect, but show the current launcher.
+        let executable = if Path::new(&saved.executable).is_file() {
+            launcher_path(Path::new(&saved.executable)).to_string_lossy().into_owned()
+        } else { discover_executable().unwrap_or_default() };
+        let status = Status { phase: "disconnected".into(), executable, version: None, account: None,
             thread_id: saved.thread_id.clone(), message: if settings_error { "连接设置无法读取，请重新选择程序并连接" } else { "尚未连接" }.into(), generation: 0 };
         Ok(Self(Arc::new(Core { emit, assistant, settings_path, workspace: root.join("codex-workspace"), operations: Mutex::new(()),
             inner: Mutex::new(Inner { saved, status, child: None, stdin: None, next_id: 0, pending: HashMap::new(), active: None, preparing: None, preparation_cancelled: false, issued: Vec::new(), cancelled_before_start: Vec::new(), stopped: false, account: None, checking_account: false, loaded_threads: HashSet::new() }) })))
@@ -234,7 +238,14 @@ impl Core {
         result
     }
     fn connect_inner(self: &Arc<Self>, generation: u64, executable: String) -> Result<Status> {
-        let executable = fs::canonicalize(Path::new(&executable)).map_err(|_| "请选择本机 Codex 可执行程序。")?;
+        let saved = self.inner.lock().map_err(|_| "Codex 状态不可用。")?.saved.executable.clone();
+        // Also recover when Codex is upgraded while Reader remains open. Only
+        // fall back for the saved/default selection, not an invalid new choice.
+        let selected = if executable.is_empty() || (executable == saved && !Path::new(&executable).is_file()) {
+            discover_executable().ok_or("未找到 Codex 程序，请安装 Codex CLI 或选择当前可执行程序。")?
+        } else { executable };
+        let launcher = launcher_path(Path::new(&selected));
+        let executable = fs::canonicalize(&launcher).map_err(|_| "请选择本机 Codex 可执行程序。")?;
         if !executable.is_file() { return Err("请选择本机 Codex 可执行程序。".into()); }
         let version = read_version(&executable)?;
         if !SUPPORTED_VERSIONS.contains(&version.as_str()) { return Err(format!("当前版本为 {version}；Reader 暂支持 {}。",SUPPORTED_VERSIONS.join(" / "))); }
@@ -252,8 +263,9 @@ impl Core {
         {
             let mut inner = self.inner.lock().map_err(|_| "Codex 状态不可用。")?;
             if generation != inner.status.generation || inner.stopped { let _ = child.kill(); let _ = child.wait(); return Err("连接已取消。".into()); }
-            let path = executable.to_string_lossy().into_owned();
-            if inner.saved.executable != path { inner.saved.thread_id = None; inner.saved.unfinished = false; }
+            let path = launcher.to_string_lossy().into_owned();
+            let same_binary = fs::canonicalize(&inner.saved.executable).is_ok_and(|p| p == executable);
+            if inner.saved.executable != path && !same_binary { inner.saved.thread_id = None; inner.saved.unfinished = false; }
             inner.saved.executable = path.clone(); inner.status.executable = path; inner.status.version = Some(version);
             inner.stdin = Some(writer); inner.child = Some(child); inner.issued.clear();
         }
@@ -283,7 +295,7 @@ impl Core {
                 }
             }
         });
-        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.3"},"capabilities":{"experimentalApi":false}}))?;
+        let initialized = self.rpc(generation, "initialize", json!({"clientInfo":{"name":"ai_native_reader","title":"AI Native Reader","version":"0.1.4"},"capabilities":{"experimentalApi":false}}))?;
         if !initialized["userAgent"].is_string() { return Err("Codex 初始化响应不兼容。".into()); }
         {
             let mut inner = self.inner.lock().map_err(|_| "Codex 状态不可用。")?;
@@ -607,12 +619,21 @@ impl Core {
         true
     }
 }
-fn discover_executable() -> Option<String> {
+fn executable_paths() -> Vec<PathBuf> {
     let mut paths = Vec::new();
-    if let Some(home) = std::env::var_os("HOME") { let home = PathBuf::from(home); paths.extend([home.join(".brew/bin/codex"), home.join(".local/bin/codex")]); }
+    if let Some(home) = std::env::var_os("HOME") { let home = PathBuf::from(home); paths.extend([home.join(".brew/bin/codex"), home.join(".local/bin/codex"), home.join(".npm-global/bin/codex")]); }
     paths.extend([PathBuf::from("/opt/homebrew/bin/codex"), PathBuf::from("/usr/local/bin/codex")]);
     if let Some(path) = std::env::var_os("PATH") { paths.extend(std::env::split_paths(&path).map(|p| p.join("codex"))); }
-    paths.into_iter().find(|path| path.is_file()).map(|path| path.to_string_lossy().into_owned())
+    paths
+}
+fn discover_executable() -> Option<String> {
+    executable_paths().into_iter().find(|path| path.is_absolute() && path.is_file()).map(|path| path.to_string_lossy().into_owned())
+}
+fn launcher_path(selected: &Path) -> PathBuf {
+    let Ok(binary) = fs::canonicalize(selected) else { return selected.to_owned(); };
+    // Prefer a stable alias only when it resolves to the selected binary. A
+    // manually selected custom installation must never become another program.
+    executable_paths().into_iter().find(|path| path.is_absolute() && fs::canonicalize(path).is_ok_and(|p| p == binary)).unwrap_or(binary)
 }
 fn read_version(executable: &Path) -> Result<String> {
     let mut child = Command::new(executable).arg("--version").stdin(Stdio::null()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().map_err(|_| "无法运行所选 Codex 程序。")?;
