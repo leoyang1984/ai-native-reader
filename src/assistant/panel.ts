@@ -2,7 +2,7 @@ import { AssistantClient, type AssistantRequest } from './client';
 import type { AssistantMessage, Conversation, ConversationPage, ActionDraft, ActionReceipt, AssistantSource } from './contracts';
 import type { CodexClient } from '../codex-client';
 import { desktop } from '../repository';
-import { DraftWriter, conversationTitle, messageLabel, overlayPanel, panelPreferences, panelWidth, PANEL_DEFAULT, PANEL_MIN, PANEL_MAX, continuationDraft, type PendingSelection } from './presentation';
+import { DraftWriter, conversationTitle, messageLabel, overlayPanel, panelPreferences, panelWidth, PANEL_DEFAULT, PANEL_MIN, PANEL_MAX, continuationDraft, materialDetails, type PendingSelection } from './presentation';
 import './panel.css';
 
 const PREFERENCES = 'reader.assistant.panel.v1';
@@ -349,18 +349,20 @@ export class AssistantPanel {
       const label = message.role === 'assistant' ? messageLabel(message.status) : '';
       if (label) row.append(element('p', 'assistant-message-status', label));
       if (message.error && message.status === 'failed') row.append(element('p', 'assistant-message-status', message.error));
-      if (message.role === 'assistant' && message.input.retrieval) {
-        const retrieval=message.input.retrieval;
-        row.append(element('p','assistant-message-status',`检索匹配 ${retrieval.matched} 项，使用 ${retrieval.sent} 项。${retrieval.partial ? '检索范围尚不完整，未命中不代表不存在。' : ''}${retrieval.scope.includes('Vault 未连接') ? 'Vault 未连接或不可用。' : ''}`));
-      }
-      if (message.answer?.citations.length) {
-        const hasNonBook = message.answer.citations.some((c) => {
-          const s = message.input.sources.find((source) => source.id === c.sourceId);
-          return s && s.kind !== 'book';
+      const citations = message.answer?.citations ?? [];
+      if (message.role === 'assistant' && (citations.length || message.input.retrieval || message.input.sources.length)) {
+        const hasNonBook = citations.some((c) => {
+          const source = message.input.sources.find((source) => source.id === c.sourceId);
+          return source && source.kind !== 'book';
         });
-        const summaryLabel = hasNonBook ? `参考依据 · ${message.answer.citations.length}` : `原文依据 · ${message.answer.citations.length}`;
+        const summaryLabel = citations.length
+          ? `${hasNonBook ? '参考依据' : '原文依据'} · ${citations.length}`
+          : '资料范围';
         const details = element('details', 'assistant-citations'); details.append(element('summary', '', summaryLabel));
-        for (const citation of message.answer.citations) {
+        const scope = element('div', 'assistant-material-scope');
+        for (const line of materialDetails(message.input)) scope.append(element('p', '', line));
+        details.append(scope);
+        for (const citation of citations) {
           const source = message.input.sources.find((source) => source.id === citation.sourceId);
           if (source) {
             const item = element('div', 'assistant-citation-item');

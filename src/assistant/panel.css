@@ -29,6 +29,8 @@
 .assistant-message-status{font-size:10px;line-height:1.8;color:var(--muted);margin:9px 0 0}
 .assistant-citations{font-size:11px;line-height:1.8;color:var(--muted);margin-top:14px}
 .assistant-citations summary{cursor:pointer}
+.assistant-material-scope{margin:8px 0 12px;overflow-wrap:anywhere}
+.assistant-material-scope p{margin:3px 0}
 .assistant-citation-item{margin:6px 0 10px}
 .assistant-source-title{margin:6px 0 3px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .assistant-source-badge{font-size:9px;padding:1px 4px;border-radius:3px;border:1px solid var(--line);font-weight:normal;color:var(--muted);white-space:nowrap;margin-right:4px}

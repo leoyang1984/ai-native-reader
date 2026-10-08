@@ -22,7 +22,7 @@ A quiet, local EPUB reader with a persistent reading companion. Read, ask about 
 ## Quick start
 
 1. **Open a book:** import or drag an EPUB onto the library, or choose “先用示例试读” (Try the sample). Switch between single and double columns in the top bar. Use ← / → for chapters and ↑ / ↓ to move within the current chapter.
-2. **Discuss a passage:** connect Codex or pi using the [setup guide](docs/GETTING_STARTED.md). Select text and choose “提问” (Ask), or open the right-hand “助手” (Assistant) and type a question. Send with ⌘ / Ctrl + Enter. Expand “原文依据／参考依据” (Sources) and choose “查看原文” (View passage) to jump back to the book.
+2. **Discuss a passage:** connect Codex or pi using the [setup guide](docs/GETTING_STARTED.md). Select text and choose “提问” (Ask), or open the right-hand “助手” (Assistant) and type a question. Send with ⌘ / Ctrl + Enter. Expand “原文依据／参考依据” (Sources) and choose “查看原文” (View passage) to jump back to the book. Coverage and retrieval details are kept inside the same disclosure.
 3. **Keep your thoughts:** choose “存为笔记” (Save as note) on your own message. For an AI response, choose “确认想法” (Review idea), edit the title and text, then “确认并保存想法” (Confirm and save). Connect an Obsidian Vault if you want Markdown exports.
 
 <details>
@@ -58,7 +58,7 @@ Complete desktop build instructions and downloads will be provided after platfor
 
 ## Download the preview
 
-The latest preview is **v0.1.5**, adding pi 1.1.0 and its cancellation flag while retaining Codex launcher recovery. See [pi compatibility](docs/PI_1_1_COMPATIBILITY.md). Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
+The latest preview is **v0.1.6**, reducing repetitive assistant retrieval notices and placing material coverage inside the collapsed Sources disclosure. Pi 1.1.0 and Codex 0.160.1 remain supported. See [assistant changes](docs/QUIET_ASSISTANT.md). Apple Silicon Mac users can download the app from [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases). See [installation and Codex/pi requirements](docs/GETTING_STARTED.md). Codex or pi is optional for ordinary reading; choose one compatible CLI to use the assistant.
 
 ## Run
 

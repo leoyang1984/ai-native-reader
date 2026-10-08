@@ -22,7 +22,7 @@
 ## 简单上手
 
 1. **打开一本书**：在书架导入或拖入 EPUB，也可以点击“先用示例试读”。顶栏切换单栏／双栏；← / → 翻章，↑ / ↓ 在当前章节移动。
-2. **围绕原文讨论**：先按 [连接说明](docs/GETTING_STARTED.md) 连接 Codex 或 pi。选中正文，点击浮动工具条的“提问”，或展开右侧“助手”输入问题。按 ⌘ / Ctrl + Enter 发送；展开回答的“原文依据／参考依据”，点击“查看原文”回到书中。
+2. **围绕原文讨论**：先按 [连接说明](docs/GETTING_STARTED.md) 连接 Codex 或 pi。选中正文，点击浮动工具条的“提问”，或展开右侧“助手”输入问题。按 ⌘ / Ctrl + Enter 发送；展开回答的“原文依据／参考依据”，点击“查看原文”回到书中。检索范围与资料限制收在同一折叠区，默认不占用回答正文。
 3. **留下自己的思考**：用户消息可“存为笔记”；AI 回答点击“确认想法”，编辑标题和正文后，再“确认并保存想法”。连接 Obsidian Vault 后，可选择导出 Markdown。
 
 <details>
@@ -60,7 +60,7 @@
 
 ## 下载预览版
 
-最新版本为 **v0.1.5 预览版**，支持 pi 1.1.0，并正确处理新版的取消标记；保留 Codex 升级后的路径恢复。详见 [pi 兼容说明](docs/PI_1_1_COMPATIBILITY.md)。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
+最新版本为 **v0.1.6 预览版**，减少助手反复追加的检索提醒，资料范围默认收进来源折叠区；保留 pi 1.1.0 和 Codex 0.160.1 支持。详见 [助手说明](docs/QUIET_ASSISTANT.md)。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
 
 ## 本地运行
 
