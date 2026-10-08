@@ -60,7 +60,7 @@
 
 ## 下载预览版
 
-最新版本为 **v0.1.4 预览版**，修复 Codex 升级后旧程序路径失效的连接问题，继续支持 Codex 0.160.1 / pi 1.0.4。详见 [连接修复说明](docs/CODEX_LAUNCHER_FIX.md)。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
+最新版本为 **v0.1.5 预览版**，支持 pi 1.1.0，并正确处理新版的取消标记；保留 Codex 升级后的路径恢复。详见 [pi 兼容说明](docs/PI_1_1_COMPATIBILITY.md)。Mac 用户可在 [GitHub Releases](https://github.com/leoyang1984/ai-native-reader/releases) 下载 Apple Silicon 应用，参阅 [安装与 Codex/pi 条件](docs/GETTING_STARTED.md)。
 
 ## 本地运行
 
@@ -101,7 +101,7 @@ npm run desktop:build
 
 ## 助手与 Obsidian
 
-先安装并登录你自己的 Codex 或 pi，再在 Reader 的连接界面选择程序。Reader 接受 Codex CLI 0.159.2 / 0.160.0 / 0.160.1 和 pi 1.0.0–1.0.4。历史真实问答验收使用 Codex CLI 0.160.0、pi 1.0.0；新增 CLI 版本已核对协议，实际问答尚未重新验收，详见 [CLI 兼容说明](docs/CLI_COMPATIBILITY.md)。配置完成后，日常只需打开伴读；连接时会在后台启动所选 CLI，无需另外保持 Codex 桌面应用、pi 或终端窗口开启。只在 Reader 内对话不需要配置 MCP。
+先安装并登录你自己的 Codex 或 pi，再在 Reader 的连接界面选择程序。Reader 接受 Codex CLI 0.159.2 / 0.160.0 / 0.160.1 和 pi 1.0.0–1.0.4 及 1.1.0。历史真实问答验收使用 Codex CLI 0.160.0、pi 1.0.0；新增 CLI 版本已核对协议，实际问答尚未重新验收，详见 [pi 1.1.0 兼容说明](docs/PI_1_1_COMPATIBILITY.md)。配置完成后，日常只需打开伴读；连接时会在后台启动所选 CLI，无需另外保持 Codex 桌面应用、pi 或终端窗口开启。只在 Reader 内对话不需要配置 MCP。
 
 选择 Obsidian Vault 后，助手使用该连接配置检索材料，无需在每次对话中重新提供目录。当前检索有数量、大小与时间限制，不是完整的大型 Vault 索引；未命中不能证明整个 Vault 不含相关材料。
 
